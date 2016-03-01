@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonAuth"
+            android:id="@+id/button"
+            android:layout_marginTop="32dp"
+            android:onClick="buttonAuthClicked"
+            android:layout_below="@+id/editText" android:layout_alignEnd="@+id/checkBox"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"/>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBox" android:layout_below="@+id/textView" android:layout_alignParentStart="true"
+            android:layout_marginTop="47dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_below="@+id/checkBox" android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/button"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonClearAuth"
+            android:id="@+id/button2"
+            android:onClick="buttonClearAuthClicked" android:layout_alignTop="@+id/button"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="43dp"/>
+</RelativeLayout>

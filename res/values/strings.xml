@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YourCloudPlaylist</string>
+    <string name="description">Click on button to sync your files from dropbox and make playlist. </string>
+    <string name="button_text">New Button</string>
+    <string name="buttonAuth">Auth</string>
+    <string name="buttonClearAuth">Clear Auth</string>
+</resources>
