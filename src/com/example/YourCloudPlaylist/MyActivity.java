@@ -1,6 +1,7 @@
 package com.example.YourCloudPlaylist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -71,6 +72,12 @@ public class MyActivity extends Activity {
         clearKeys();
     }
 
+    public void explorerButtonClick(View view) {
+
+       Intent openExplorer=new Intent(this,FileExplorer.class);
+        startActivity(openExplorer);
+    }
+
     private class Authentication extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... params) {
@@ -78,6 +85,7 @@ public class MyActivity extends Activity {
             return null;
         }
     }
+
 
 
 
