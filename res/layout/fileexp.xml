@@ -13,14 +13,16 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button4" android:layout_alignParentTop="true" android:layout_toStartOf="@+id/button5"/>
+                android:text="@string/buttonCancle"
+                android:id="@+id/button4" android:layout_alignParentTop="true" android:layout_toStartOf="@+id/button5"
+                android:onClick="cancelClicked"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="@string/buttonSelect"
                 android:id="@+id/button5"
-                android:layout_alignParentTop="true" android:layout_alignParentEnd="true"/>
+                android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+                android:onClick="selectClicked"/>
     </RelativeLayout>
     <ListView
             android:id="@android:id/list"

@@ -7,4 +7,6 @@
     <string name="buttonClearAuth">Clear Auth</string>
     <string name="emptyDirectoryString">No Data</string>
     <string name="title_activity_display_message">Explorer</string>
+    <string name="buttonCancle">Cancel</string>
+    <string name="buttonSelect">Select</string>
 </resources>

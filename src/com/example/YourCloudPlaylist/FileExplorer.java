@@ -1,6 +1,7 @@
 package com.example.YourCloudPlaylist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import java.io.File;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,6 +25,7 @@ public class FileExplorer extends ListActivity {
     private String root="/";
     private String home;
     private TextView myPath;
+    private String currentDir;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class FileExplorer extends ListActivity {
     private void getDir(String dirPath)
     {
         myPath.setText("Location: " + dirPath);
+        currentDir=dirPath;
         item = new ArrayList<String>();
         path = new ArrayList<String>();
         File f = new File(dirPath);
@@ -85,4 +89,14 @@ public class FileExplorer extends ListActivity {
         }
     }
 
+    public void cancelClicked(View view) {
+        finish();
+    }
+
+    public void selectClicked(View view) {
+        Intent giveDevicePath=new Intent();
+        giveDevicePath.putExtra("path",currentDir);
+        setResult(RESULT_OK, giveDevicePath);
+        finish();
+    }
 }

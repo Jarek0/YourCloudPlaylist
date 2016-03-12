@@ -13,6 +13,7 @@ public class MyActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
+    private final int FILE_EXPLORER=1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +51,8 @@ public class MyActivity extends Activity {
         String key = prefs.getString("ACCESS_KEY", null);
         String secret = prefs.getString("ACCESS_SECRET", null);
         if (secret != null) {
-            Log.i("nie null","nie null");
             DbApi.mDBApi.getSession().setOAuth2AccessToken(secret);
         } else {
-            Log.i("null","null");
             DbApi.mDBApi.getSession().startOAuth2Authentication(MyActivity.this);
         }
     }
@@ -75,7 +74,7 @@ public class MyActivity extends Activity {
     public void explorerButtonClick(View view) {
 
        Intent openExplorer=new Intent(this,FileExplorer.class);
-        startActivity(openExplorer);
+        startActivityForResult(openExplorer,FILE_EXPLORER);
     }
 
     private class Authentication extends AsyncTask<Void,Void,Void>{
@@ -84,6 +83,14 @@ public class MyActivity extends Activity {
            authentication();
             return null;
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == FILE_EXPLORER) {
+            String currentDir=data.getExtras().getString("path");
+            Log.i ("elo",requestCode+" "+resultCode+" "+currentDir);
+        }
+
     }
 
 
