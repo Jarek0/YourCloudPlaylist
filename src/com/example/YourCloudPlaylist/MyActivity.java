@@ -19,6 +19,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main2);
         DbApi.initialize();
+        authentication();
     }
     @Override
     public void onResume() {
@@ -50,8 +51,9 @@ public class MyActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences("prefs", 0);
         String key = prefs.getString("ACCESS_KEY", null);
         String secret = prefs.getString("ACCESS_SECRET", null);
-        if (secret != null) {
+        if (secret != null && key!=null) {
             DbApi.mDBApi.getSession().setOAuth2AccessToken(secret);
+            Log.i("aa","bb");
         } else {
             DbApi.mDBApi.getSession().startOAuth2Authentication(MyActivity.this);
         }
@@ -63,17 +65,26 @@ public class MyActivity extends Activity {
         edit.commit();
     }
 
-    public void buttonAuthClicked(View view) {
-        new Authentication().execute();
+    public void onAuthButtonClick(View view) {
+        //
+        // new Authentication().execute();
+        authentication();
     }
 
-    public void buttonClearAuthClicked(View view) {
+    public void onClearAuthButtonClick(View view) {
         clearKeys();
     }
 
-    public void explorerButtonClick(View view) {
+    public void onExplorerButtonClick(View view) {
 
        Intent openExplorer=new Intent(this,FileExplorer.class);
+        openExplorer.putExtra("mode",FileType.DEVICE_FILE);
+        startActivityForResult(openExplorer,FILE_EXPLORER);
+    }
+
+    public void onDropboxButtonClick(View view) {
+        Intent openExplorer=new Intent(this,FileExplorer.class);
+        openExplorer.putExtra("mode",FileType.DROPBOX_FILE);
         startActivityForResult(openExplorer,FILE_EXPLORER);
     }
 

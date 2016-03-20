@@ -1,37 +1,33 @@
 package com.example.YourCloudPlaylist;
 
-import com.dropbox.client2.DropboxAPI;
 
 /**
  * Created by pglg on 12-03-2016.
  */
 public class DropboxFile implements MyFile {
 
-    DropboxAPI.Entry outputFromDropbox;
+    public static String getRoot() { return "/"; }
+    public static String getHome() {
+        return getRoot();
+    }
 
-    @Override
-    public String getRoot() {
-        return null;
+    private String path;
+    private boolean isDirectory;
+    private String name;
+    private String parentPath;
+    private DropboxFile[] listFiles;
+
+    DropboxFile(String path,String name,String parentPath,DropboxFile[] listFiles,boolean isDirectory){
+        this.path=path;
+        this.name=name;
+        this.parentPath=parentPath;
+        this.listFiles=listFiles;
+        this.isDirectory=isDirectory;
     }
 
     @Override
-    public String getHome() {
-        return null;
-    }
-
-    @Override
-    public void setPath(String path) {
-        CloudExplorer asyncTask = (CloudExplorer) new CloudExplorer(new DropboxEntryAsyncResponse() {
-            @Override
-            public void processFinish(DropboxAPI.Entry output) {
-                outputFromDropbox=output;
-            }
-         }).execute();
-    }
-
-    @Override
-    public MyFile[] listfiles() {
-        return new MyFile[0];
+    public DropboxFile[] listFiles(){
+        return listFiles;
     }
 
     @Override
@@ -48,16 +44,21 @@ public class DropboxFile implements MyFile {
 
     @Override
     public String getPath() {
-        return outputFromDropbox.path;
+        return path;
     }
 
     @Override
     public boolean isDirectory() {
-        return outputFromDropbox.isDir;
+        return isDirectory;
     }
 
     @Override
     public String getName() {
-        return outputFromDropbox.fileName();
+        return name;
+    }
+
+    @Override
+    public String getParent() {
+        return parentPath;
     }
 }

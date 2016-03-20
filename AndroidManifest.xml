@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.example.YourCloudPlaylist.FileExplorer"
+                android:name=".FileExplorer"
                 android:label="@string/title_activity_display_message"
                 android:parentActivityName="com.example.YourCloudPlaylist.MyActivity" >
             <meta-data
