@@ -1,6 +1,7 @@
 package com.example.YourCloudPlaylist;
-import com.dropbox.client2.android.AndroidAuthSession;
+
 import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.AppKeyPair;
 
 /**
@@ -9,6 +10,7 @@ import com.dropbox.client2.session.AppKeyPair;
 public class DbApi {
     private static final String APP_KEY = "219201jk4eje28t";
     private static final String APP_SECRET ="zzeam9b1iaxe0mu";
+    static boolean logged=false;
 
     static DropboxAPI<AndroidAuthSession> mDBApi;
     static void initialize(){

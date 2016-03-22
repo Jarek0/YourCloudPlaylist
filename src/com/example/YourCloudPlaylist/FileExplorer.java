@@ -90,13 +90,13 @@ public class FileExplorer extends ListActivity {
                                             path.add(file.getParent());
                                         }
                                         for (MyFile f : files) {
-                                            //if (!f.isHidden() && f.canRead()) {
+                                            if (!f.isHidden() && f.canRead()) {
                                             path.add(f.getPath());
                                             if (f.isDirectory())
                                                 item.add(f.getName() + "/");
                                             else
                                                 item.add(f.getName());
-                                            // }
+                                             }
                                         }
                                         fileList = new ArrayAdapter<String>(context, R.layout.row, item);
                                         setListAdapter(fileList);

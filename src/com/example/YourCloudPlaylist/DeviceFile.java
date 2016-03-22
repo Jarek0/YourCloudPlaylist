@@ -1,6 +1,5 @@
 package com.example.YourCloudPlaylist;
 
-import android.bluetooth.BluetoothClass;
 import android.os.Environment;
 
 import java.io.File;

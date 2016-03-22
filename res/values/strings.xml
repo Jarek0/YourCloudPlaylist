@@ -9,4 +9,8 @@
     <string name="title_activity_display_message">Explorer</string>
     <string name="buttonCancle">Cancel</string>
     <string name="buttonSelect">Select</string>
+    <string name="connectionerr">Connection error</string>
+    <string name="refresh">Refresh</string>
+    <string name="log_in_button">Log in Dropbox</string>
+    <string name="exit_button">Exit</string>
 </resources>

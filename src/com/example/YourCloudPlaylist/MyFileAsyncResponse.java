@@ -1,7 +1,5 @@
 package com.example.YourCloudPlaylist;
 
-import com.dropbox.client2.DropboxAPI;
-
 /**
  * Created by pglg on 12-03-2016.
  */

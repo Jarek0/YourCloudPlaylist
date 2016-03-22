@@ -14,8 +14,8 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
     </content>
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="dropbox-android-sdk-1.6.3" level="project" />
     <orderEntry type="library" name="json_simple-1.1" level="project" />
-    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
