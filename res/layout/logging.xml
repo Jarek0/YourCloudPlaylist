@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+    <Space android:layout_width="wrap_content"
+           android:layout_height="0dp"
+           android:layout_weight="0.1"></Space>
 
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
             android:id="@+id/imageView"
             android:background="@drawable/ic_launcher"
-            android:layout_marginTop="98dp" android:layout_gravity="right|bottom"
-            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+            />
+    <Space android:layout_width="wrap_content"
+           android:layout_height="0dp"
+           android:layout_weight="0.1"></Space>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in_button"
+            android:id="@+id/button8"
+            android:onClick="onLogInButtonClick"/>
+
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exit_button"
             android:id="@+id/button7"
-            android:layout_marginBottom="41dp"
-            android:width="300dp" android:layout_alignParentBottom="true" android:layout_alignStart="@+id/button8"
             android:onClick="onExitButtonClick"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in_button"
-            android:id="@+id/button8" android:layout_above="@+id/button7" android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp" android:width="300dp" android:onClick="onLogInButtonClick"/>
-</RelativeLayout>
+    <Space android:layout_width="wrap_content"
+           android:layout_height="0dp"
+           android:layout_weight="0.1"></Space>
+
+</TableLayout>

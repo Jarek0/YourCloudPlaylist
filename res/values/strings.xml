@@ -13,4 +13,15 @@
     <string name="refresh">Refresh</string>
     <string name="log_in_button">Log in Dropbox</string>
     <string name="exit_button">Exit</string>
+    <string name="error_dialog_head_text">Error occured</string>
+    <string name="error_dialog_tryagain">Try again</string>
+    <string name="error_dialog_cancel">Cancel</string>
+    <string name="main_activity_text">Select directory where you want YourCloudPlaylist to make a playlist. Next select
+        Dropbox directory where you have music files, insert name of your new playlist and touch Generate playlist. From
+        now you can use your music files as if they were on your device.
+    </string>
+    <string name="log_out">Log out</string>
+    <string name="device_path">Device path:</string>
+    <string name="dropbox_path">Dropbox path:</string>
+    <string name="playlist_name">Playlist name:</string>
 </resources>

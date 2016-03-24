@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,11 +18,13 @@ public class MyActivity extends Activity {
      */
     private final int FILE_EXPLORER=1;
     private Boolean exit = false;
+    private TextView playlistNameTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main2);
+        playlistNameTextView=(TextView)findViewById(R.id.playlist_name);
     }
     @Override
     public void onBackPressed() {
@@ -58,14 +62,14 @@ public class MyActivity extends Activity {
         startActivity(openLogActivity);
     }
 
-    public void onExplorerButtonClick(View view) {
+    public void onDeviceExplorerButtonClick(View view) {
 
        Intent openExplorer=new Intent(this,FileExplorer.class);
         openExplorer.putExtra("mode",FileType.DEVICE_FILE);
         startActivityForResult(openExplorer,FILE_EXPLORER);
     }
 
-    public void onDropboxButtonClick(View view) {
+    public void onDropboxExplorerButtonClick(View view) {
         Intent openExplorer=new Intent(this,FileExplorer.class);
         openExplorer.putExtra("mode",FileType.DROPBOX_FILE);
         startActivityForResult(openExplorer,FILE_EXPLORER);
@@ -77,5 +81,10 @@ public class MyActivity extends Activity {
             String currentDir=data.getExtras().getString("path");
             Log.i ("elo",requestCode+" "+resultCode+" "+currentDir);
         }
+    }
+
+    public void onGenerateButtonClick(View view) {
+        String playlistName= String.valueOf(playlistNameTextView.getText());
+        new PlaylistGenerator(this).execute(Environment.getExternalStorageDirectory().getPath(),"/",playlistName);
     }
 }

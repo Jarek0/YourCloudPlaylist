@@ -53,9 +53,9 @@ public class FileExplorer extends ListActivity {
     }
 
     public void selectClicked(View view) {
-        Intent giveDevicePath=new Intent();
-        giveDevicePath.putExtra("path",currentDir);
-        setResult(RESULT_OK, giveDevicePath);
+        Intent givePath=new Intent();
+        givePath.putExtra("path",currentDir);
+        setResult(RESULT_OK, givePath);
         finish();
     }
 
@@ -104,7 +104,6 @@ public class FileExplorer extends ListActivity {
                                     else
                                     {
                                         new AlertDialog.Builder(context)
-                                                //.setIcon(R.drawable.icon)
                                                 .setTitle("[" + file.getName() + "] folder can't be read!")
                                                 .setPositiveButton("OK",null).show();
                                     }
