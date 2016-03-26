@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="@string/error_dialog_head_text"/>
+            android:text="@string/error_occured"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
                 android:background="@android:color/holo_red_light"
-                android:text="@string/error_dialog_cancel"/>
+                android:text="@string/cancel"/>
 
         <Button
                 android:id="@+id/dialog_ok"
@@ -30,6 +30,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
                 android:background="@android:color/holo_blue_light"
-                android:text="@string/error_dialog_tryagain"/>
+                android:text="@string/try_again"/>
     </LinearLayout>
 </RelativeLayout>

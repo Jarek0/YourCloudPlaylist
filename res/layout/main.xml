@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/device_path"
                 android:layout_column="2" android:maxLines="1" android:inputType="text"
-                android:onClick="onDeviceExplorerButtonClick"/>
+        />
     </TableRow>
 
     <TableRow>
@@ -70,7 +70,7 @@
                 android:layout_weight="0.56"
                 android:layout_height="wrap_content"
                 android:id="@+id/dropbox_path"
-                android:maxLines="1" android:inputType="text" android:onClick="onDropboxExplorerButtonClick"/>
+                android:maxLines="1" android:inputType="text"/>
     </TableRow>
 
     <TableRow>

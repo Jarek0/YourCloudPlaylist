@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.exception.DropboxException;
+import com.example.YourCloudPlaylist.R;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -24,6 +25,9 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
     private ProgressDialog dialog;
     private Context context;
     private String exceptionText;
+    private String devicePath;
+    private String dropboxPath;
+    private String playlistName;
 
     PlaylistGenerator(Context context){
         this.context=context;
@@ -49,9 +53,9 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
             is.close();
 
         } catch (MalformedURLException e) {
-            throw new Exception("Connect error");
+            throw new Exception(context.getResources().getString(R.string.connection_error));
         } catch (IOException e) {
-            throw new Exception("Connect error");
+            throw new Exception(context.getResources().getString(R.string.connection_error));
         }
 
         return toDirectURL(redirectedUrl);
@@ -76,23 +80,25 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
             fOut.close();
         }
         catch (IOException e){
-            throw new Exception("Error while saving file");
+            throw new Exception(context.getResources().getString(R.string.saving_file_error));
         }
 
     }
 
     @Override
     protected void onPreExecute() {
-        this.dialog.setMessage("Wait..");
+        this.dialog.setMessage(context.getResources().getString(R.string.wait));
+        this.dialog.setIndeterminate(false);
+        this.dialog.setCancelable(false);
         this.dialog.show();
     }
 
     @Override
     protected Void doInBackground(String... params) {
 
-        String devicePath=params[0];
-        String dropboxPath=params[1];
-        String playlistName=params[2];
+        devicePath=params[0];
+        dropboxPath=params[1];
+        playlistName=params[2];
         DropboxAPI.Entry directory;
         DropboxAPI.DropboxLink link;
         String shareLink;
@@ -103,12 +109,14 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
             directory = DbApi.mDBApi.metadata(dropboxPath, 1000, null, true, null);
                 for (DropboxAPI.Entry entry:directory.contents) {
                    if(!entry.isDir){
+                       publishProgress(context.getResources().getString(R.string.making_link)+"\n"+entry.fileName());
                       link=DbApi.mDBApi.share(entry.path);
                        shareLink=getShareURL(link.url);
                        urls.add(shareLink);
                        names.add(entry.fileName());
                    }
                 }
+            publishProgress(context.getResources().getString(R.string.creating_playlist));
             makePlaylist(devicePath,playlistName,urls,names);
         }
         catch (DropboxException e){
@@ -132,7 +140,7 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
     protected void onCancelled() {
         super.onCancelled();
         this.dialog.cancel();
-        Toast.makeText(context, "Playlist can be incorrect.Please make it again.",
+        Toast.makeText(context, context.getResources().getString(R.string.incorrect_playlist),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -143,21 +151,7 @@ public class PlaylistGenerator extends AsyncTask<String,String,Void> {
             dialog.dismiss();
         }
         if(exceptionText!=null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage(exceptionText)
-                    .setTitle(R.string.error_dialog_head_text);
-
-            builder.setPositiveButton(R.string.error_dialog_tryagain, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-
-                }
-            });
-            builder.setNegativeButton(R.string.error_dialog_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-
-                }
-            });
-            AlertDialog dialog = builder.create();
+            Toast.makeText(context, context.getResources().getString(R.string.error_occured)+"\n"+exceptionText, Toast.LENGTH_LONG).show();
         }
 
     }

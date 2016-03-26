@@ -13,13 +13,13 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/buttonCancle"
+                android:text="@string/cancel"
                 android:id="@+id/button4" android:layout_alignParentTop="true" android:layout_toStartOf="@+id/button5"
                 android:onClick="cancelClicked"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/buttonSelect"
+                android:text="@string/select"
                 android:id="@+id/button5"
                 android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
                 android:onClick="selectClicked"/>

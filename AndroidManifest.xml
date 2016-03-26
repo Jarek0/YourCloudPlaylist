@@ -26,13 +26,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".LogActivity"
-                  android:label="Log in">
+                  android:label="Log in"
+                  android:screenOrientation="portrait">
 
         </activity>
         <activity
                 android:name=".FileExplorer"
-                android:label="@string/title_activity_display_message"
-                android:parentActivityName="com.example.YourCloudPlaylist.MyActivity" >
+                android:label="@string/explorer"
+                android:parentActivityName="com.example.YourCloudPlaylist.MyActivity"
+                android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.example.YourCloudPlaylist.MyActivity" />

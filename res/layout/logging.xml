@@ -20,14 +20,14 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/log_in_button"
+            android:text="@string/log_in_dropbox"
             android:id="@+id/button8"
             android:onClick="onLogInButtonClick"/>
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/exit_button"
+            android:text="@string/exit"
             android:id="@+id/button7"
             android:onClick="onExitButtonClick"/>
     <Space android:layout_width="wrap_content"

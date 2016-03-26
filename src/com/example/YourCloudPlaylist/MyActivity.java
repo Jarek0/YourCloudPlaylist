@@ -1,30 +1,78 @@
 package com.example.YourCloudPlaylist;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MyActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
-    private final int FILE_EXPLORER=1;
+
+    private final int DEVICE_EXPLORER =1;
+    private final int DROPBOX_EXPLORER=2;
     private Boolean exit = false;
     private TextView playlistNameTextView;
+    private TextView devicePathTextView;
+    private TextView dropboxPathTextView;
+    private String currentDir;
 
+    private int lastEditedTextView=0; // to avoid retouched text view
+
+    /******To disable keyboard showing************/
+    private View.OnTouchListener devicePathTextViewTouchBehaviour = new View.OnTouchListener() {
+        public boolean onTouch (View v, MotionEvent event) {
+
+            /*To disable opened keyboard*/
+            View view = getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
+            if(lastEditedTextView!=1){
+                lastEditedTextView=1;
+                onDeviceExplorerButtonClick(v);
+            }
+            return true;
+        }
+    };
+
+    private View.OnTouchListener dropboxPathTextViewTouchBehaviour = new View.OnTouchListener() {
+        public boolean onTouch (View v, MotionEvent event) {
+
+              /*To disable opened keyboard*/
+            View view = getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
+            if(lastEditedTextView!=2){
+                lastEditedTextView=2;
+                onDropboxExplorerButtonClick(v);
+            }
+            return true;
+        }
+    };
+    /********************************************************/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main2);
+        setContentView(R.layout.main);
         playlistNameTextView=(TextView)findViewById(R.id.playlist_name);
+        devicePathTextView=(TextView)findViewById(R.id.device_path);
+        devicePathTextView.setOnTouchListener(devicePathTextViewTouchBehaviour);
+        dropboxPathTextView=(TextView)findViewById(R.id.dropbox_path);
+        dropboxPathTextView.setOnTouchListener(dropboxPathTextViewTouchBehaviour);
+
     }
     @Override
     public void onBackPressed() {
@@ -66,25 +114,37 @@ public class MyActivity extends Activity {
 
        Intent openExplorer=new Intent(this,FileExplorer.class);
         openExplorer.putExtra("mode",FileType.DEVICE_FILE);
-        startActivityForResult(openExplorer,FILE_EXPLORER);
+        startActivityForResult(openExplorer, DEVICE_EXPLORER);
     }
 
     public void onDropboxExplorerButtonClick(View view) {
         Intent openExplorer=new Intent(this,FileExplorer.class);
         openExplorer.putExtra("mode",FileType.DROPBOX_FILE);
-        startActivityForResult(openExplorer,FILE_EXPLORER);
+        startActivityForResult(openExplorer, DROPBOX_EXPLORER);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == FILE_EXPLORER) {
-            String currentDir=data.getExtras().getString("path");
-            Log.i ("elo",requestCode+" "+resultCode+" "+currentDir);
+        Log.i("1","jeden");
+        if (resultCode == RESULT_OK ) {
+            Log.i("2","dwa");
+            currentDir=data.getExtras().getString("path");
+            switch(requestCode){
+                case DEVICE_EXPLORER:{
+                    devicePathTextView.setText(currentDir);
+                    break;
+                }
+                case DROPBOX_EXPLORER:{
+                    dropboxPathTextView.setText(currentDir);
+                }
+            }
         }
     }
 
     public void onGenerateButtonClick(View view) {
         String playlistName= String.valueOf(playlistNameTextView.getText());
-        new PlaylistGenerator(this).execute(Environment.getExternalStorageDirectory().getPath(),"/",playlistName);
+        new PlaylistGenerator(this).execute(devicePathTextView.getText().toString(),
+                                            dropboxPathTextView.getText().toString(),
+                                            playlistName);
     }
 }

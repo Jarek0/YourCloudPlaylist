@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">YourCloudPlaylist</string>
-    <string name="description">Click on button to sync your files from dropbox and make playlist. </string>
-    <string name="button_text">New Button</string>
-    <string name="buttonAuth">Auth</string>
-    <string name="buttonClearAuth">Clear Auth</string>
-    <string name="emptyDirectoryString">No Data</string>
-    <string name="title_activity_display_message">Explorer</string>
-    <string name="buttonCancle">Cancel</string>
-    <string name="buttonSelect">Select</string>
-    <string name="connectionerr">Connection error</string>
+    <string name="no_data">No Data</string>
+    <string name="explorer">Explorer</string>
+    <string name="cancel">Cancel</string>
+    <string name="select">Select</string>
+    <string name="connection_error">Connection error</string>
     <string name="refresh">Refresh</string>
-    <string name="log_in_button">Log in Dropbox</string>
-    <string name="exit_button">Exit</string>
-    <string name="error_dialog_head_text">Error occured</string>
-    <string name="error_dialog_tryagain">Try again</string>
-    <string name="error_dialog_cancel">Cancel</string>
+    <string name="log_in_dropbox">Log in Dropbox</string>
+    <string name="exit">Exit</string>
+    <string name="error_occured">Error occured</string>
+    <string name="try_again">Try again</string>
     <string name="main_activity_text">Select directory where you want YourCloudPlaylist to make a playlist. Next select
         Dropbox directory where you have music files, insert name of your new playlist and touch Generate playlist. From
         now you can use your music files as if they were on your device.
@@ -24,4 +19,9 @@
     <string name="device_path">Device path:</string>
     <string name="dropbox_path">Dropbox path:</string>
     <string name="playlist_name">Playlist name:</string>
+    <string name="saving_file_error">Saving playlist error.\nSpecify the correct paths.</string>
+    <string name="wait">Wait...</string>
+    <string name="incorrect_playlist">Playlist can be incorrect.Please try again.</string>
+    <string name="creating_playlist">Creating playlist...</string>
+    <string name="making_link">Making public link to:</string>
 </resources>

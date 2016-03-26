@@ -33,6 +33,8 @@ public class FileManager extends AsyncTask<String, Void, MyFile> {
     protected void onPreExecute() {
         if(typeOfFile!=FileType.DEVICE_FILE) {
             this.dialog.setMessage("Wait..");
+            this.dialog.setIndeterminate(false);
+            this.dialog.setCancelable(false);
             this.dialog.show();
         }
     }
